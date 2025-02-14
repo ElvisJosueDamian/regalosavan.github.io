@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Día del Cariño</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        body {
+            background-color: pink;
+            font-family: 'Dancing Script';
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            color: red;
+            text-shadow: 2px 2px white;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 5s infinite ease-in-out, moveUp 5s linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-45deg); }
+            50% { transform: translateY(-20px) rotate(-45deg); }
+        }
+        @keyframes moveUp {
+            0% { opacity: 1; transform: translateY(0) rotate(-45deg); }
+            100% { opacity: 0; transform: translateY(-100vh) rotate(-45deg); }
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Dancing Script', cursive;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        #poema {
+            font-size: 1.5em;
+            color: darkred;
+            margin-top: 20px;
+            max-width: 80%;
+            text-align: center;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💖 ¡Feliz Día del Cariño! 💖</h1>
+        <button onclick="generarPoema()">Presioname</button>
+        <p id="poema"></p>
+        <script>
+            function createHeart() {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = "100vh";
+                document.body.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+            setInterval(createHeart, 300);
+            
+            function generarPoema() {
+                const poemas = [
+                    `Como un suspiro en la noche\nNo quiero prometerte eternidades,\nporque el tiempo es un ladrón caprichoso,\npero si me dejas,\nte amaré en cada instante que me sea concedido.\n\nSeré la sombra que te sigue sin peso,\nel susurro que te nombra en la madrugada,\nlas manos que aprenden el mapa de tu piel\ncomo si fueran ciegas y tú, mi única luz.\n\nNo te amo por lo que fuiste ni por lo que serás,\nte amo en este preciso segundo,\nen esta bocanada de aire,\nen este latido que me grita tu nombre\ncomo un suspiro en la noche.`,
+                    `Si te vas, llévame contigo\nSi alguna vez decides partir,\nno dejes mis besos olvidados en tu abrigo,\nni las promesas guardadas en tu almohada.\nSi te vas, llévame contigo.\n\nLlévate mi risa entre tus dedos,\nmi voz temblorosa llamando tu nombre,\nlas veces que temí perderte\ny aquellas en las que supe que eras todo.\n\nPero si decides quedarte,\nno prometo ser perfecto,\nsólo un hombre que ama con cada herida,\nque escribe tu nombre en la arena\naunque sepa que las olas lo borrarán.`,
+                    `La forma en que te amo\nNo te amo como las historias mal contadas,\nesas que prometen lunas y estrellas\ncomo si fueran baratijas al alcance de todos.\n\nTe amo como el mar ama la orilla,\nsiempre volviendo, siempre abrazando,\naunque a veces parezca que se aleja.`,
+                    `Un amor sin reloj\nNo quiero medir nuestro amor con relojes,\nni contar los días que llevamos juntos.\nLo que siento por ti no cabe en el tiempo,\nporque nació sin prisa y no conoce final.`
+                    ];
+                document.getElementById("poema").innerText = poemas[Math.floor(Math.random() * poemas.length)];
+            }
+        </script>
+    </div>
+</body>
+</html>
